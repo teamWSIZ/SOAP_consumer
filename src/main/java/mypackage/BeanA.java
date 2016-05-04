@@ -1,9 +1,6 @@
-package MyPackage;
+package mypackage;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by pm on 11/12/15.
- */
 
 @Component
 public class BeanA {
