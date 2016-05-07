@@ -12,11 +12,11 @@
     <context:component-scan base-package="mypackage"/>
 
     <bean name="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-        <property name="contextPath" value="hello.wsdl"/>
+        <property name="contextPath" value="usd.wsdl"/>
     </bean>
 
-    <bean class="mypackage.WeatherClient">
-        <property name="defaultUri" value="http://ws.cdyne.com/WeatherWS"/>
+    <bean class="mypackage.UsdClient">
+        <property name="defaultUri" value="http://www.webserviceX.NET/"/>
         <property name="marshaller" ref="marshaller"/>
         <property name="unmarshaller" ref="marshaller"/>
     </bean>
