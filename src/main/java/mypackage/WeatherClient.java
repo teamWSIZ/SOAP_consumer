@@ -1,17 +1,12 @@
 package mypackage;
 
-import java.text.SimpleDateFormat;
-
-import hello.wsdl.Forecast;
-import hello.wsdl.ForecastReturn;
-import hello.wsdl.GetCityForecastByZIP;
-import hello.wsdl.GetCityForecastByZIPResponse;
-import hello.wsdl.Temp;
+import hello.wsdl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import java.text.SimpleDateFormat;
 
 public class WeatherClient extends WebServiceGatewaySupport {
 
@@ -22,8 +17,6 @@ public class WeatherClient extends WebServiceGatewaySupport {
         GetCityForecastByZIP request = new GetCityForecastByZIP();
         request.setZIP(zipCode);
 
-        log.info("Requesting forecast for " + zipCode);
-
         GetCityForecastByZIPResponse response = (GetCityForecastByZIPResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(
                         "http://wsf.cdyne.com/WeatherWS/Weather.asmx",
@@ -33,8 +26,30 @@ public class WeatherClient extends WebServiceGatewaySupport {
         return response;
     }
 
-    public void printResponse(GetCityForecastByZIPResponse response) {
+    public void myRequest() {
+        //set up custom request;
+        //get proper response
+        //parse result
+        //  -- what if error?
+        //  -- what if timeout?
+        GetCityWeatherByZIP req = new GetCityWeatherByZIP();
+        req.setZIP("10001");
+        GetCityWeatherByZIPResponse res = (GetCityWeatherByZIPResponse)
+                getWebServiceTemplate().marshalSendAndReceive(
+                    "http://wsf.cdyne.com/WeatherWS/Weather.asmx",
+                    req,
+                    new SoapActionCallback("http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP")
+                );
+        WeatherReturn wea = res.getGetCityWeatherByZIPResult();
+        System.out.println(wea.getCity());
+        System.out.println("Wind:" + wea.getWind());
+        System.out.println("Temp:" + wea.getTemperature());
+        System.out.println("Vis:" + wea.getVisibility());
+        System.out.println("Pressure:" + wea.getPressure());
+        System.out.println(wea.getRemarks());
+    }
 
+    public void printResponse(GetCityForecastByZIPResponse response) {
         ForecastReturn forecastReturn = response.getGetCityForecastByZIPResult();
 
         if (forecastReturn.isSuccess()) {
