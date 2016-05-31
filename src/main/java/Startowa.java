@@ -7,7 +7,7 @@ public class Startowa {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
 
         UsdClient client = ctx.getBean(UsdClient.class);
-        client.myConvert();
+        client.getCountryInfo();
 
         ctx.close();
     }

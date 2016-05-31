@@ -97,10 +97,10 @@
                 </executions>
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>usd.wsdl</generatePackage>
+                    <generatePackage>ccc.wsdl</generatePackage>
                     <schemas>
                         <schema>
-                            <url>http://www.webservicex.com/CurrencyConvertor.asmx?wsdl</url>
+                            <url>http://localhost:8080/ws/countries.wsdl</url>
                         </schema>
                     </schemas>
                 </configuration>

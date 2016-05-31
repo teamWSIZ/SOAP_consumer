@@ -1,9 +1,9 @@
 package mypackage;
 
+import ccc.wsdl.GetCountryRequest;
+import ccc.wsdl.GetCountryResponse;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
-import usd.wsdl.ConversionRate;
-import usd.wsdl.ConversionRateResponse;
 
 public class UsdClient extends WebServiceGatewaySupport {
 
@@ -32,17 +32,30 @@ public class UsdClient extends WebServiceGatewaySupport {
     }
 
     public void myConvert() {
-        ConversionRate req = new ConversionRate();
-        req.setFromCurrency(usd.wsdl.Currency.EUR);
-        req.setFromCurrency(usd.wsdl.Currency.USD);
-        ConversionRateResponse res = (ConversionRateResponse)
+//        ConversionRate req = new ConversionRate();
+//        req.setFromCurrency(usd.wsdl.Currency.EUR);
+//        req.setFromCurrency(usd.wsdl.Currency.USD);
+//        ConversionRateResponse res = (ConversionRateResponse)
+//                getWebServiceTemplate().marshalSendAndReceive(
+//                        "http://www.webservicex.com/CurrencyConvertor.asmx",
+//                        req,
+//                        new SoapActionCallback("http://www.webserviceX.NET/ConversionRate")
+//                );
+//        double rate = res.getConversionRateResult();
+//        System.out.println("rate: " + rate);
+    }
+
+    public void getCountryInfo() {
+        GetCountryRequest req = new GetCountryRequest();
+        req.setName("Poland");
+        GetCountryResponse res = (GetCountryResponse)
                 getWebServiceTemplate().marshalSendAndReceive(
-                        "http://www.webservicex.com/CurrencyConvertor.asmx",
+                        "http://localhost:8080/ws",
                         req,
-                        new SoapActionCallback("http://www.webserviceX.NET/ConversionRate")
+                        new SoapActionCallback("http://localhost:8080/ws")
                 );
-        double rate = res.getConversionRateResult();
-        System.out.println("rate: " + rate);
+        System.out.println(res.getCountry());
+
     }
 
 }
