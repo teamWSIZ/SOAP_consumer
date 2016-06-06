@@ -1,4 +1,4 @@
-import mypackage.UsdClient;
+import mypackage.MyWsdlClient;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
@@ -6,8 +6,10 @@ public class Startowa {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
 
-        UsdClient client = ctx.getBean(UsdClient.class);
+        MyWsdlClient client = ctx.getBean(MyWsdlClient.class);
         client.getCountryInfo();
+
+
 
         ctx.close();
     }

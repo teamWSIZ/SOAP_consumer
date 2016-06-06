@@ -1,11 +1,26 @@
 package mypackage;
 
+import ccc.wsdl.Country;
+import ccc.wsdl.Currency;
 import ccc.wsdl.GetCountryRequest;
 import ccc.wsdl.GetCountryResponse;
+import lombok.Builder;
+import lombok.Value;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
-public class UsdClient extends WebServiceGatewaySupport {
+
+
+@Value
+@Builder
+class LocalCountry {
+    String name;
+    int population;
+    String capital;
+    Currency currency;
+}
+
+public class MyWsdlClient extends WebServiceGatewaySupport {
 
 
     public void myRequest() {
@@ -45,6 +60,7 @@ public class UsdClient extends WebServiceGatewaySupport {
 //        System.out.println("rate: " + rate);
     }
 
+
     public void getCountryInfo() {
         GetCountryRequest req = new GetCountryRequest();
         req.setName("Poland");
@@ -54,7 +70,9 @@ public class UsdClient extends WebServiceGatewaySupport {
                         req,
                         new SoapActionCallback("http://localhost:8080/ws")
                 );
-        System.out.println(res.getCountry());
+        Country c = res.getCountry();
+        LocalCountry lc = LocalCountry.builder().name(c.getName()).capital(c.getCapital()).build();
+        System.out.println(lc);
 
     }
 

@@ -15,7 +15,7 @@
         <property name="contextPath" value="ccc.wsdl"/>
     </bean>
 
-    <bean class="mypackage.UsdClient">
+    <bean class="mypackage.MyWsdlClient">
         <property name="defaultUri" value="http://www.webserviceX.NET/"/>
         <property name="marshaller" ref="marshaller"/>
         <property name="unmarshaller" ref="marshaller"/>

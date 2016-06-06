@@ -1,0 +1,7 @@
+
+
+Assumption: webserver visible at:
+http://localhost:8080/ws/countries.wsdl
+
+This url set in pom.xml in plugins section, XJC execution
+  --> no problem, that error "last modification date not known"
