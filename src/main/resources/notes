@@ -5,3 +5,18 @@ http://localhost:8080/ws/countries.wsdl
 
 This url set in pom.xml in plugins section, XJC execution
   --> no problem, that error "last modification date not known"
+
+
+##############################
+Setup after clone:
+
+# generate sources from web data (url->wsdl)
+ mvn clean compile
+
+# as defined they will be placed in target/generated-sources/xjc/autogen (or ccc or whatever)
+
+# adjust package names in your sources
+
+# adjust spring-config.xml to selected package name (autogen)
+
+# run

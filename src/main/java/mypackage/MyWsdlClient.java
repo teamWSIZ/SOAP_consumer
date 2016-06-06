@@ -1,9 +1,9 @@
 package mypackage;
 
-import ccc.wsdl.Country;
-import ccc.wsdl.Currency;
-import ccc.wsdl.GetCountryRequest;
-import ccc.wsdl.GetCountryResponse;
+import autogen.Country;
+import autogen.Currency;
+import autogen.GetCountryRequest;
+import autogen.GetCountryResponse;
 import lombok.Builder;
 import lombok.Value;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
