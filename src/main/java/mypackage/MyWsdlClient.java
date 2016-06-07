@@ -1,24 +1,8 @@
 package mypackage;
 
-import autogen.Country;
-import autogen.Currency;
-import autogen.GetCountryRequest;
-import autogen.GetCountryResponse;
-import lombok.Builder;
-import lombok.Value;
+import autogen.*;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
-
-
-
-@Value
-@Builder
-class LocalCountry {
-    String name;
-    int population;
-    String capital;
-    Currency currency;
-}
 
 public class MyWsdlClient extends WebServiceGatewaySupport {
 
@@ -61,7 +45,7 @@ public class MyWsdlClient extends WebServiceGatewaySupport {
     }
 
 
-    public void getCountryInfo() {
+    public void getCountryFromSoap() {
         GetCountryRequest req = new GetCountryRequest();
         req.setName("Poland");
         GetCountryResponse res = (GetCountryResponse)
@@ -71,9 +55,18 @@ public class MyWsdlClient extends WebServiceGatewaySupport {
                         new SoapActionCallback("http://localhost:8080/ws")
                 );
         Country c = res.getCountry();
-        LocalCountry lc = LocalCountry.builder().name(c.getName()).capital(c.getCapital()).build();
-        System.out.println(lc);
+        System.out.println(res.getCountry().getName());
+    }
 
+    public void getStudentFromSoap() {
+        GetStudentRequest req = new GetStudentRequest();
+        req.setName("AbraKadabra");
+        GetStudentResponse res = (GetStudentResponse) getWebServiceTemplate().marshalSendAndReceive(
+                "http://localhost:8080/ws",
+                req,
+                new SoapActionCallback("http://localhost:8080/ws")
+        );
+        System.out.println("name:" + res.getSss().getName() + " pesel:" + res.getSss().getPesel());
     }
 
 }

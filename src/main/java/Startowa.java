@@ -7,8 +7,8 @@ public class Startowa {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
 
         MyWsdlClient client = ctx.getBean(MyWsdlClient.class);
-        client.getCountryInfo();
-
+        client.getCountryFromSoap();
+        client.getStudentFromSoap();
 
 
         ctx.close();
